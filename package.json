@@ -1,0 +1,13 @@
+{
+  "name": "tui-bedfordshire-hackathon-pubsub-server",
+  "version": "1.0.0",
+  "dependencies": {
+    "express": "^4.16.4",
+    "socket.io": "^2.1.1"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "deploy": "now --public --token $NOW_TOKEN_HACK_PUBSUB && now alias --token $NOW_TOKEN_HACK_PUBSUB && NOW_TOKEN=${NOW_TOKEN_HACK_PUBSUB} now-pipeline-prune && now ls tui-bedfordshire-hackathon-pubsub-server --token $NOW_TOKEN_HACK_PUBSUB",
+    "logs": "now --token $NOW_TOKEN_HACK_PUBSUB logs zeochat-match.now.sh"
+  }
+}

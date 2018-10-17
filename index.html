@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Hello Sales Subscribers</title>
+    <link rel="stylesheet" href="//stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+</head>
+
+<body>
+
+    <div class="px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+        <h1 class="display-4">Hello Sales Subscribers</h1>
+        <p class="lead">This is an example display of live sales</p>
+    </div>
+    <div class="container">
+        <ul class="list-group sales">
+        </ul>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.js"></script>
+    <script>
+        var socket = io.connect(window.location.href)
+        socket.on('sales', function (raw) {
+            let data = JSON.parse(raw)
+            console.log(data)
+            let html = '<li class="list-group-item justify-content-between list-group-item-success">' + data.source +
+                ' > ' +
+                data.destination +
+                ' <span class="badge badge-primary badge-pill">' + data.id + '</span></li>'
+            console.log(html)
+            $('.sales li').removeClass('list-group-item-success')
+            $('.sales').prepend(html)
+            $('.sales li').slice(10).remove()
+        })
+    </script>
+
+</body>
+
+</html>
